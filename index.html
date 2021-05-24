@@ -106,7 +106,15 @@
 	<button type="button" onclick="openURL('https://github.com/r760/algorithm-visualizer')">View</button> 
 	<button type="button" onclick="moveRight()">Next Project</button> 
     </div>
-    <a href="https://github.com/r760"> <img id="github" src="images/github.png" alt="Could not load image!"> </a>
+    <div class="project" id="project2">
+	<img src="images/wordlist-generator.jpg" alt="Could not load image!"> 
+	<p>A simple wordlist generator written in C for Linux</p>
+	<br>
+	<button type="button" onclick="moveLeft()">Previous Project</button> 
+	<button type="button" onclick="openURL('https://github.com/r760/wordlist-generator')">View</button> 
+	<button type="button" onclick="moveRight()">Next Project</button> 
+    </div>
+    <img id="github" src="images/github.png" alt="Could not load image!" onclick="openURL('https://github.com/r760')">
   </div>
 
   </body>
@@ -125,22 +133,13 @@
 	}
     }
 
-    var j = -1;
-    let projects = ["project0", "project1"];
+    var j = 0;
+    let projects = ["project0", "project1", "project2"];
 
     document.getElementById(projects[0]).style.display="inherit";
 
     function clear()
     {
-	if (j == projects.length)
-	{
-	    j = 0;
-	}
-	else if (j == -1)
-	{
-	    j = projects.length - 1;
-	}
-
 	var k = 0;
 	while (k < projects.length)
 	{
@@ -150,14 +149,27 @@
 
     function moveLeft()
     {
-	clear()
-	document.getElementById(projects[j--]).style.display="inherit";
+	clear();
+	j--;
+
+	if (j <= -1) {
+	    j = (projects.length - 1);
+	}
+
+	document.getElementById(projects[j]).style.display="inherit";
+
     }
 
     function moveRight()
     {
-	clear()
-	document.getElementById(projects[j++]).style.display="inherit";
+	clear();
+	j++;
+
+	if (j >= projects.length) {
+	    j = 0;
+	}
+
+	document.getElementById(projects[j]).style.display="inherit";
     }
 
     function openURL(s)
